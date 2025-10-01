@@ -1,4 +1,4 @@
-namespace Kodanalys
+namespace Kodanalys.Models
 {
     public class User
     {
