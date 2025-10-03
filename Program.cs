@@ -12,44 +12,49 @@ namespace Kodanalys
             bool isRunning = true;
             while (isRunning)
             {
-                Console.WriteLine("Välj ett alternativ:");
+                Console.WriteLine("\nVälj ett alternativ:");
                 Console.WriteLine("1. Lägg till användare");
                 Console.WriteLine("2. Visa alla användare");
                 Console.WriteLine("3. Ta bort användare");
                 Console.WriteLine("4. Sök användare");
                 Console.WriteLine("5. Avsluta");
+                Console.Write("Skriv ditt val här: ");
                 string choice = Console.ReadLine();
 
-
-
-               if (choice == "1")
+                switch (choice)
                 {
-                    Console.Write("Ange namn: ");
-                    string newUser = Console.ReadLine();
+                    case "1":
+                     Console.Clear();
+                     Console.Write("Ange namn att lägga till: ");
+                     string newUser = Console.ReadLine();
                     if (userCount < 10)
                     {
                         users[userCount] = newUser;
                         userCount++;
+                        Console.WriteLine("Användären har lagts till listan!");
                     }
                     else
                     {
-                        Console.WriteLine("Listan är full!");
-                    }
-                }
-                else if (choice == "2")
-                {
-                    Console.WriteLine("Användare:");
-                    for (int i = 0; i < userCount; i++)
-                    {
+                        Console.WriteLine("Listan är full! Du har uppnåt max antal användare");
+                    } 
+                    break;
+
+                   case "2":
+                        Console.Clear();
+                        Console.WriteLine("Användare:");
+                     for (int i = 0; i < userCount; i++)
+                     {
                         Console.WriteLine(users[i]);
-                    }
-                }
-                else if (choice == "3")
-                {
-                    Console.Write("Ange namn att ta bort: ");
-                    string removeUser = Console.ReadLine();
-                    int userIndex = -1;
-                    for (int i = 0; i < userCount; i++)
+                     }
+                    break;
+
+                   case "3":
+                     Console.Clear();
+                     Console.Write("Ange namn att ta bort: ");
+                     string removeUser = Console.ReadLine();
+                     int userIndex = -1;
+                    
+                        for (int i = 0; i < userCount; i++)
                     {
                         if (users[i] == removeUser)
                         {
@@ -58,50 +63,54 @@ namespace Kodanalys
                         }
                     }
 
-                    if (userIndex != -1)
-                    {
-                        for (int i = userIndex; i < userCount - 1; i++)
+                        if (userIndex != -1)
                         {
-                            users[i] = users[i + 1];
+                            for (int i = userIndex; i < userCount - 1; i++)
+                            {
+                                users[i] = users[i + 1];
+                            }
+                            userCount--;
+                            Console.WriteLine($"Användaren {removeUser} är nu bort plockad från listan.");
                         }
-                        userCount--;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Användaren hittades inte.");
-                    }
-                }
-                else if (choice == "4")
-                {
-                    Console.Write("Ange namn att söka: ");
-                    string searchUser = Console.ReadLine();
-                    bool userFound = false;
-                    for (int i = 0; i < userCount; i++)
-                    {
-                        if (users[i] == searchUser)
+                        else
                         {
-                            userFound = true;
-                            break;
+                            Console.WriteLine("Användaren hittades inte.");
                         }
-                    }
-                    if (userFound)
-                    {
-                        Console.WriteLine("Användaren finns i listan.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Användaren hittades inte.");
-                    }
-                }
-                else if (choice == "5")
-                {
-                    isRunning = false;
-                }
-                else
-                {
-                    Console.WriteLine("Ogiltigt val.");
-                }
-                Console.WriteLine();
+                        break;
+
+                    case "4":
+                        Console.Clear();
+                        Console.Write("Ange namn att söka: ");
+                        string searchUser = Console.ReadLine();
+                        bool userFound = false;
+                        for (int i = 0; i < userCount; i++)
+                        {
+                            if (users[i] == searchUser)
+                            {
+                                userFound = true;
+                                break;
+                            }
+                        }
+                        if (userFound)
+                        {
+                            Console.WriteLine("Användaren finns i listan.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Användaren hittades inte.");
+                        }
+                        break ;
+
+                    case "5":
+                             isRunning = false;
+                        Console.WriteLine("Programmet avslutas, Hejdå!");
+                        break ;
+
+                        default:
+                               Console.WriteLine("Ogiltigt val.");
+                        break ;
+
+                }               
             }
         }
     }
