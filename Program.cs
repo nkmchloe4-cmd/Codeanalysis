@@ -40,8 +40,8 @@ namespace Kodanalys
                     break;
 
                    case "2":
-                        Console.Clear();
-                        Console.WriteLine("Användare:");
+                     Console.Clear();
+                     Console.WriteLine("Användare:");
                      for (int i = 0; i < userCount; i++)
                      {
                         Console.WriteLine(users[i]);
