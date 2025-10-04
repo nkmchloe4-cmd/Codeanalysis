@@ -19,23 +19,29 @@ namespace Kodanalys
                 Console.WriteLine("4. Sök användare");
                 Console.WriteLine("5. Avsluta");
                 Console.Write("Skriv ditt val här: ");
-                string choice = Console.ReadLine();
+                string choice = Console.ReadLine()?.Trim().ToUpper() ?? string.Empty;
 
                 switch (choice)
                 {
                     case "1":
                      Console.Clear();
                      Console.Write("Ange namn att lägga till: ");
-                     string newUser = Console.ReadLine();
+                     string newUser = Console.ReadLine()?.Trim().ToUpper() ?? string.Empty;
+
+                        if (string.IsNullOrEmpty(newUser))
+                    {
+                       Console.WriteLine("Du måste ange ett namn");
+                       break;
+                    }
                     if (userCount < 10)
                     {
                         users[userCount] = newUser;
                         userCount++;
-                        Console.WriteLine("Användären har lagts till listan!");
+                        Console.WriteLine("Användaren har lagts till i listan!");
                     }
                     else
                     {
-                        Console.WriteLine("Listan är full! Du har uppnåt max antal användare");
+                        Console.WriteLine("Listan är full! Du har nått max antal användare");
                     } 
                     break;
 
@@ -51,8 +57,8 @@ namespace Kodanalys
                    case "3":
                      Console.Clear();
                      Console.Write("Ange namn att ta bort: ");
-                     string removeUser = Console.ReadLine();
-                     int userIndex = -1;
+                     string removeUser = Console.ReadLine()?.Trim().ToUpper() ?? string.Empty;
+                        int userIndex = -1;
                     
                         for (int i = 0; i < userCount; i++)
                     {
@@ -70,7 +76,7 @@ namespace Kodanalys
                                 users[i] = users[i + 1];
                             }
                             userCount--;
-                            Console.WriteLine($"Användaren {removeUser} är nu bort plockad från listan.");
+                            Console.WriteLine($"Användaren {removeUser} har tagits bort från listan.");
                         }
                         else
                         {
@@ -81,7 +87,7 @@ namespace Kodanalys
                     case "4":
                         Console.Clear();
                         Console.Write("Ange namn att söka: ");
-                        string searchUser = Console.ReadLine();
+                        string searchUser = Console.ReadLine()?.Trim().ToUpper() ?? string.Empty;
                         bool userFound = false;
                         for (int i = 0; i < userCount; i++)
                         {
